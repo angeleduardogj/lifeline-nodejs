@@ -64,7 +64,11 @@ function standardResponse(message, data = null, error = null) {
   return { message, data, error }
 }
 
-// Ruta para crear un tipo
+app.get("/", (req, res) => {
+  res.send("🚀");
+});
+
+
 app.post("/type", async (req, res) => {
   const { name, description, entityType } = req.body
 
