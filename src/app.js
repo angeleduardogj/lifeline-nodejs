@@ -28,7 +28,7 @@ const COOKIE_OPTIONS = {
 }
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+  origin: '*', // Replace with your frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add the methods you want to allow
 }));
