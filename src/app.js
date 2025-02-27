@@ -30,12 +30,10 @@ const COOKIE_OPTIONS = {
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 
-
-
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+  origin: process.env.FRONTEND_URL, 
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add the methods you want to allow
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
 }));
 
 
@@ -73,7 +71,7 @@ function standardResponse(message, data = null, error = null) {
 }
 
 app.get("/", (req, res) => {
-  res.send("🚀");
+  res.send("🚀V2");
 });
 
 
