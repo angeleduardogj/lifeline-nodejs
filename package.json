@@ -15,7 +15,8 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.13.3"
+    "pg": "^8.13.3",
+    "resend": "^4.1.2"
   },
   "devDependencies": {
     "dotenv": "^16.4.7",

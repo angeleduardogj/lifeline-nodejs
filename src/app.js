@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 const cors = require("cors") // Add this line
+const { Resend } = require("resend");
 
 const app = express()
 app.use(express.json())
@@ -26,12 +27,17 @@ const COOKIE_OPTIONS = {
   maxAge: 3600000, // 1 hora
   path: "/",
 }
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+
+
 
 app.use(cors({
   origin: process.env.FRONTEND_URL, // Replace with your frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add the methods you want to allow
 }));
+
 
 
 // Middleware para verificar el token JWT
@@ -70,6 +76,28 @@ app.get("/", (req, res) => {
   res.send("🚀");
 });
 
+
+// Endpoint para enviar correos con Resend
+app.post("/send-contact", async (req, res) => {
+  const { to, subject, html } = req.body;
+
+  if (!to || !subject || !html) {
+    return res.status(400).json({ error: "Faltan datos en la solicitud" });
+  }
+
+  try {
+    const response = await resend.emails.send({
+      from: "contacto@lifelinesaludmental.com", // Debe estar verificado en Resend
+      to: [to],
+      subject,
+      html,
+    });
+
+    res.status(201).json({ message: "Correo enviado", response });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.post("/type", async (req, res) => {
   const { name, description, entityType } = req.body
