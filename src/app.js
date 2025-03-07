@@ -201,7 +201,7 @@ app.post("/signup", async (req, res) => {
 })
 
 // Ruta de inicio de sesión
-app.post("/login", async (req, res) => {
+app.post("/autorizar", async (req, res) => {
   const { email, password } = req.body
 
   if (!email || !password) {
