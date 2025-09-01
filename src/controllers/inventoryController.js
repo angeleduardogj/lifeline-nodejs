@@ -85,6 +85,7 @@ const getInventoryResponses = async (req, res) => {
     const responses = result.rows.map((row) => ({
       id: row.response_id,
       respondentName: row.respondent_name,
+      medicalRecord: row.medical_record,
       answers: typeof row.answers === 'string' ? JSON.parse(row.answers) : row.answers,
       createdAt: row.created_at
     }))
