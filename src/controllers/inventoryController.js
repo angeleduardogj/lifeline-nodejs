@@ -80,9 +80,7 @@ const getInventoryResponses = async (req, res) => {
   const { responseId } = req.params
 
   try {
-    console.log('Buscando respuesta con ID:', responseId)
     const result = await pool.query("SELECT * FROM get_inventory_responses($1)", [responseId])
-    console.log('Resultado de la consulta:', result.rows)
 
     const responses = result.rows.map((row) => ({
       id: row.response_id,
